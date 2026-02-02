@@ -1,0 +1,13 @@
+**/target/
+**/bin/
+**/*.jar
+**/*.class
+
+.idea/
+.vscode/
+*.iml
+.classpath
+.project
+.settings/
+
+.env

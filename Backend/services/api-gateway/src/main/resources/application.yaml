@@ -1,0 +1,102 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  cloud:
+    gateway:
+      routes:
+        - id: auth-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/auth-service/**
+          filters:
+            - StripPrefix=1
+
+        - id: product-service
+          uri: http://localhost:9000
+          predicates:
+            - Path=/product-service/**
+          filters:
+            - StripPrefix=1
+
+        - id: seller-service
+          uri: http://localhost:8083
+          predicates:
+            - Path=/seller-service/**
+          filters:
+            - StripPrefix=1
+
+        - id: user-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/user-service/**
+          filters:
+            - StripPrefix=1
+
+        - id: admin-service
+          uri: http://localhost:8090
+          predicates:
+            - Path=/admin-service/**
+          filters:
+            - StripPrefix=1
+
+        - id: order-service
+          uri: http://localhost:8086
+          predicates:
+            - Path=/order-service/**
+          filters:
+            - StripPrefix=1
+
+        - id: cart-service
+          uri: http://localhost:8086
+          predicates:
+            - Path=/cart-service/**
+          filters:
+            - StripPrefix=1
+
+        - id: payment-service
+          uri: http://localhost:8087
+          predicates:
+            - Path=/payment-service/**
+          filters:
+            - StripPrefix=1
+
+        - id: notification-service
+          uri: http://localhost:8096
+          predicates:
+            - Path=/notification-service/**
+          filters:
+            - StripPrefix=1
+
+springdoc:
+  swagger-ui:
+    urls:
+      - name: auth-service
+        url: /auth-service/v3/api-docs
+      - name: product-service
+        url: /product-service/v3/api-docs
+      - name: seller-service
+        url: /seller-service/v3/api-docs
+      - name: user-service
+        url: /user-service/v3/api-docs
+      - name: admin-service
+        url: /admin-service/v3/api-docs
+      - name: order-service
+        url: /order-service/v3/api-docs
+      - name: payment-service
+        url: /payment-service/v3/api-docs
+      - name: notification-service
+        url: /notification-service/v3/api-docs
+
+app:
+  jwt:
+    # MUST MATCH auth-service EXACTLY
+    secret: shopverse-super-secure-jwt-secret-key-256bits

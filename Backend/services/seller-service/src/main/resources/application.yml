@@ -1,0 +1,25 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: seller-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/seller_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: shopverse-app
+    password: Shopverse@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+
+app:
+  jwt:
+    secret: shopverse-super-secure-jwt-secret-key-256bits
+  internal:
+    auth-key: shopverse-internal-secret-123
+

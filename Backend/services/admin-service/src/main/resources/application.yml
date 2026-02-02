@@ -1,0 +1,26 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: admin-service
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+
+# Gateway URL for Feign Clients
+gateway:
+  url: http://localhost:8080
+
+logging:
+  level:
+    com.shopverse: DEBUG
+    org.springframework.web: INFO
+
+app:
+  jwt:
+    secret: shopverse-super-secure-jwt-secret-key-256bits
