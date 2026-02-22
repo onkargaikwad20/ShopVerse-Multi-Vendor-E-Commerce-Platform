@@ -17,7 +17,7 @@ public class SecurityConfig {
                                                 .requestMatchers("/v3/api-docs/**", "/swagger-ui/**",
                                                                 "/swagger-ui.html")
                                                 .permitAll()
-                                                .requestMatchers("/api/admin/**").hasAuthority("ADMIN") // Role check
+                                                .requestMatchers("/api/admin/**").hasAuthority("ADMIN")
                                                 .anyRequest().authenticated())
                                 .oauth2ResourceServer(oauth2 -> oauth2
                                                 .jwt(jwt -> jwt.jwtAuthenticationConverter(
@@ -29,8 +29,8 @@ public class SecurityConfig {
         @Bean
         public org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter jwtAuthenticationConverter() {
                 org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter();
-                grantedAuthoritiesConverter.setAuthorityPrefix(""); // Don't add ROLE_ prefix
-                grantedAuthoritiesConverter.setAuthoritiesClaimName("role"); // Use 'role' claim
+                grantedAuthoritiesConverter.setAuthorityPrefix(""); 
+                grantedAuthoritiesConverter.setAuthoritiesClaimName("role");
 
                 org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter jwtAuthenticationConverter = new org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter();
                 jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(grantedAuthoritiesConverter);
